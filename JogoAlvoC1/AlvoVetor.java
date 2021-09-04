@@ -1,6 +1,6 @@
 package JogoAlvoC1;
 
-import static JogoAlvoC1.Alvo.*;
+import static JogoAlvoC1.Alvo.vida;
 import java.util.Random;
 
 public class AlvoVetor {
@@ -8,7 +8,7 @@ public class AlvoVetor {
    private int nElem;
    
    
-   public void AlvoVetor(int tam){
+   public AlvoVetor(int tam){
        this.vetAlvo = new Alvo[tam];
        this.nElem=0;
    }
@@ -25,6 +25,24 @@ public class AlvoVetor {
     private void setnElem(int nElem) {
         this.nElem = nElem;
     }
+    
+    public Alvo getVetAlvo(int pos){
+        return this.vetAlvo[pos];
+    }
+    
+    public int insere(Alvo novoAlvo) {
+		if (this.nElem == this.vetAlvo.length) {
+			return -1;
+		}else {
+                        do{
+                            novoAlvo.setPosX(this.gerarNumero()+1);
+                            novoAlvo.setPosY(this.gerarNumero()+1); 
+                        }while(!verificaPos(novoAlvo.getPosX(), novoAlvo.getPosY()));
+			this.vetAlvo[this.nElem] = novoAlvo;
+			this.nElem++;
+			return 0;
+		}
+	}
    
    
    public int gerarNumero() {
@@ -34,6 +52,16 @@ public class AlvoVetor {
 	return aleat;
     }
    
+    public boolean verificaPos(int posX,int posY){   
+       if(this.pesquisar(posX, posY) != null){
+           return false;
+       }else{
+           return true;
+       }
+       
+       
+   }
+   
    public Alvo pesquisar(int posX, int posY){
        for (int i=0; i<this.nElem; i++) {
             if (this.vetAlvo[i].getPosX()== posX && this.vetAlvo[i].getPosY()== posY) {
@@ -42,32 +70,29 @@ public class AlvoVetor {
 	}
         return null;
    }
-   
-   
-   
+     
     
    public char atira(int x, int y){
        int novoAlvoX, novoAlvoY;
        Alvo alvo = this.pesquisar(x,y);
-            if(alvo.getCor() == 'B'){
-                alvo = this.vetAlvo[this.nElem-1];
-                this.nElem--;
-                vida++;
-                return 'B';
+            if(alvo == null){
+                return 'N';
             }else if(alvo.getCor()=='P'){                
                 do{
                     novoAlvoX = this.gerarNumero();
                     novoAlvoY = this.gerarNumero();
-                }while(this.pesquisar(novoAlvoX, novoAlvoY) != null);
+                }while(!verificaPos(novoAlvoX, novoAlvoY));
                 alvo.setPosX(novoAlvoX);
                 alvo.setPosY(novoAlvoY);
                 vida--;                
                 return 'P';
             }else{              
-                return 'N';
+                alvo = this.vetAlvo[this.nElem-1];
+                this.nElem--;
+                vida++;
+                return 'B';
             }
         
     }
-
    
 }

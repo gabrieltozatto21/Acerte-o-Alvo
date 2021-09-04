@@ -5,6 +5,12 @@ public class Alvo {
     private int posX, posY;
     private char cor;
     
+    public Alvo(){
+        this.posX = 0;
+        this.posY = 0;
+        this.cor = ' ';
+        
+    }
     public void Alvo(){
         this.setPosX(0);
         this.setPosY(0);
@@ -65,8 +71,8 @@ public class Alvo {
     @Override
     public String toString(){
         return "Posição X: "+ this.posX+
-               "\nPosição Y: "+ this.posY+
-               "\nCor: "+ this.cor+"\n";
+               " Posição Y: "+ this.posY+
+               " Cor: "+ this.cor+"\n";
     }
     
     
