@@ -1,6 +1,6 @@
-package JogoAlvoC1;
+package AcerteOAlvo;
 
-import static JogoAlvoC1.Alvo.*;
+import static AcerteOAlvo.Alvo.*;
 import java.util.Scanner;
 
 public class alvoAPP {
@@ -13,7 +13,7 @@ public class alvoAPP {
 		do{
 			System.out.print("\tOpcoes de conversao\n"
 					+ "1 - Jogar\n"
-					+ "2 - Pontuacao\n"
+					
 					+ "3 - Sair\n"
 					
 					+ "Digite a opcao: ");
@@ -76,18 +76,19 @@ public class alvoAPP {
                 y = scan.nextInt();
             }while(y < 1 || y > 5 );
             acerto = atirar.atira(x, y);
-            if(acerto == 'B'){
+            if(acerto == 'B'){                
                 tiros--;
                 System.out.println("Você acertou um alvo branco é o destruiu, ganhou uma vida"
                         + "\nVidas: "+vida
                         + "\nTiros restantes: "+ tiros + "\n");
+                //exibiAlvos(atirar);
 
-            }else if (acerto == 'P'){
+            }else if (acerto == 'P'){     
                 tiros--;
                  System.out.println("Você acertou um alvo preto e o deslocou de posição, perdeu uma vida!"
                         + "\nVidas: "+vida
                         + "\nTiros restantes: "+ tiros + "\n");
-                 
+                 //exibiAlvos(atirar);
             }else{
                 tiros--;
                 System.out.println("Você nao acertou nenhum alvo, Continue!"

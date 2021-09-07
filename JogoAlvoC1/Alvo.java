@@ -1,4 +1,4 @@
-package JogoAlvoC1;
+package AcerteOAlvo;
 
 public class Alvo {
     static int vida=3;
